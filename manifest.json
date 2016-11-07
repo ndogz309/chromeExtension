@@ -1,0 +1,9 @@
+// manifest file tells chrome stuff about your extension
+
+{
+  "manifest_version": 2,
+  "name": "RadioP Extension",
+  "version": "0.1"
+  
+}
+
