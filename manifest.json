@@ -14,7 +14,9 @@
 ],
 // add permisons to access url of current tab
 "permissions": [
-    "tabs"
+    "tabs",
+     "http://localhost:3000/*"
+
   ],
 
 "browser_action": {
