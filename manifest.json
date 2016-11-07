@@ -15,16 +15,19 @@
 // add permisons to access url of current tab
 "permissions": [
     "tabs",
-     "http://localhost:3000/*"
+     "http://localhost:3000/*",
+     "storage"
 
   ],
 
 "browser_action": {
-  "default_icon": "test_icon.png"
+  "default_icon": "test_icon.png",
+  "default_popup": "popup.html"
 },
 
 "background": {
-  "scripts": ["background.js"]
+  "scripts": ["background.js"],
+   "persistent": false
 }
   
 }
