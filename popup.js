@@ -1,17 +1,32 @@
+function isSignedIn(){
 
-var bkg = chrome.extension.getBackgroundPage();
+chrome.storage.sync.get('token',function(item){
+	if(item["token"]){
+		console.log(item["token"]);
+		console.log("is logged in");
+					}
+	else{
+		console.log(item["token"]);
+		console.log("not logged in");
+		}
+	});
+
+
+}
+
+
+onload = isSignedIn;
+
+
 
 function login() {
-console.log("hiiiii");
-
 var apiUrl="http://localhost:3000/api/v1/sessions"
  var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open( "POST", apiUrl, false ); // false for synchronous request
     xmlHttp.setRequestHeader("Content-Type", "application/json");
 	xmlHttp.send(JSON.stringify({session:{email:"apis123@api.com",password:"password"}}));
 	 // document.getElementById('login').textContent = xmlHttp.responseText;
-  
-
+ 
 var data=xmlHttp.responseText;
 var jsonResponse = JSON.parse(data);
 //console.log(jsonResponse);
@@ -31,8 +46,6 @@ console.log(token);
 
 // document.getElementById('login').textContent = token;
   
-
-
 
 
 //   var arr = xmlhttp.responseText.Split(',');
