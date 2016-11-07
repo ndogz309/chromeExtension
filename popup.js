@@ -26,19 +26,22 @@ chrome.storage.sync.get('token',function(item){
 
 function login() {
 var apiUrl="http://localhost:3000/api/v1/sessions"
+var email=document.getElementById('email').value;
+var password=document.getElementById('password').value;
+
+
  var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open( "POST", apiUrl, false ); // false for synchronous request
     xmlHttp.setRequestHeader("Content-Type", "application/json");
-	xmlHttp.send(JSON.stringify({session:{email:"apis123@api.com",password:"password"}}));
+	//xmlHttp.send(JSON.stringify({session:{email:"apis123@api.com",password:"password"}}));
+	xmlHttp.send(JSON.stringify({session:{email:email,password:password}}));
 	 // document.getElementById('login').textContent = xmlHttp.responseText;
  
 var data=xmlHttp.responseText;
 var jsonResponse = JSON.parse(data);
 //console.log(jsonResponse);
 
-var user=jsonResponse["user"];
-var token=user["auth_token"];
-console.log(token);
+
 
 
 
@@ -59,7 +62,21 @@ console.log(token);
 
 // document.getElementById('login').textContent = arr[2];
 
-saveToken(token)
+if (xmlHttp.status==200){
+	var user=jsonResponse["user"];
+	var token=user["auth_token"];
+	console.log(token);
+	console.log("signed in 200");
+
+saveToken(token);
+
+
+}else{
+	console.log("cant sign in");
+	document.getElementById('login').textContent = "couldnt log in";
+}
+
+
 
   
    return xmlHttp.responseText;
