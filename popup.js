@@ -1,21 +1,26 @@
-function isSignedIn(){
+onload = isSignedIn;
 
+function isSignedIn(){
 chrome.storage.sync.get('token',function(item){
 	if(item["token"]){
 		console.log(item["token"]);
 		console.log("is logged in");
+
+	document.body.classList.add('signed-in');
+     document.body.classList.remove('signed-out');
 					}
 	else{
 		console.log(item["token"]);
 		console.log("not logged in");
+
+	document.body.classList.add('signed-out');
+      document.body.classList.remove('signed-in');
 		}
 	});
-
-
 }
 
 
-onload = isSignedIn;
+
 
 
 
@@ -55,6 +60,7 @@ console.log(token);
 // document.getElementById('login').textContent = arr[2];
 
 saveToken(token)
+
   
    return xmlHttp.responseText;
 
@@ -91,6 +97,9 @@ chrome.storage.sync.clear(function() {
         console.error(error);
     }
 });
+
+isSignedIn();
+
       }
 
 
@@ -111,6 +120,7 @@ function saveToken(token) {
         chrome.storage.sync.set({'token': token}, function() {
           // Notify that we saved.
           console.log("token saved")
+          isSignedIn();
          // message('Settings saved');
         });
       }
