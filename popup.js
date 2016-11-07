@@ -55,6 +55,7 @@ saveToken(token)
 
 document.getElementById('log-in').onclick = login;
 document.getElementById('get-token').onclick = getToken;
+document.getElementById('delete-token').onclick = deleteToken;
 
 function getToken() {
 
@@ -66,6 +67,20 @@ document.getElementById('login').textContent = item;
 
    });
       }
+
+
+function deleteToken() {
+	console.log("delete");
+
+chrome.storage.sync.clear(function() {
+    var error = chrome.runtime.lastError;
+    if (error) {
+        console.error(error);
+    }
+});
+      }
+
+
 
 
 
