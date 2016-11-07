@@ -3,7 +3,27 @@
 {
   "manifest_version": 2,
   "name": "RadioP Extension",
-  "version": "0.1"
+  "version": "0.1",
+  "content_scripts": [
+  {
+    "matches": [
+      "<all_urls>"
+    ],
+    "js": ["jquery-3.1.1.min.js","content.js"]
+  }
+],
+// add permisons to access url of current tab
+"permissions": [
+    "tabs"
+  ],
+
+"browser_action": {
+  "default_icon": "test_icon.png"
+},
+
+"background": {
+  "scripts": ["background.js"]
+}
   
 }
 
